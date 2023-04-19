@@ -11,7 +11,7 @@ const CartItems = require("./models/CartItems");
 CartItems.belongsTo(Product);
 User.hasMany(Cart);
 Cart.hasMany(CartItems);
-Product.belongsToMany(Cart, { through: "cartItem" });
+Product.belongsToMany(Cart, { through: "joinProductToCart" });
 
 // CartItems.belongsTo(Cart);
 // Cart.belongsTo(User, { foreignkey: "userid" });
