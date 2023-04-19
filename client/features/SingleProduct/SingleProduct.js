@@ -19,7 +19,11 @@ const SingleProduct = () => {
   return (
     <div>
       <div>
-        <img src="{singleProduct.image}" alt="just an image" />
+        <img
+          src={singleProduct.image}
+          alt="just an image"
+          style={{ width: '300px' }} //temporary in-line styling
+        />
         <h3>{singleProduct.name}</h3>
         <h3>{singleProduct.price}</h3>
         <h3>{singleProduct.description}</h3>
