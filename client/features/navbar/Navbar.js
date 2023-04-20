@@ -14,22 +14,25 @@ const Navbar = () => {
 
   return (
     <div>
+      <div className="nav"></div>
       <h1>FS-App-Template</h1>
       <nav>
         {isLoggedIn ? (
           <div>
-            {/* The navbar will show these links after you log in */}
             <Link to="/home">Home</Link>
+            <Link to="/products">All Products</Link>{" "}
+            {/* Added link to All Products */}
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>
           </div>
         ) : (
           <div>
-            {/* The navbar will show these links before you log in */}
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
             <Link to="/cart">My Cart</Link>
+            <Link to="/products">All Products</Link>{" "}
+            <Link to="/Home">Home</Link>
           </div>
         )}
       </nav>
