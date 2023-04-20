@@ -1,7 +1,7 @@
-const Sequelize = require('sequelize');
-const db = require('../db');
+const Sequelize = require("sequelize");
+const db = require("../db");
 
-const Product = db.define('product', {
+const Product = db.define("product", {
   name: {
     type: Sequelize.STRING,
     unique: true,
@@ -35,7 +35,7 @@ const Product = db.define('product', {
   image: {
     type: Sequelize.STRING,
     defaultValue:
-      'https://help.rangeme.com/hc/article_attachments/360006928633/what_makes_a_good_product_image.jpg',
+      "https://help.rangeme.com/hc/article_attachments/360006928633/what_makes_a_good_product_image.jpg",
   },
 });
 
