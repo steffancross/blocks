@@ -89,6 +89,11 @@ const hashPassword = async (user) => {
   }
 };
 
+const assignCartToUser = async (user) => {
+  await user.createCart();
+};
+
+User.afterCreate(assignCartToUser);
 User.beforeCreate(hashPassword);
 User.beforeUpdate(hashPassword);
 User.beforeBulkCreate((users) => Promise.all(users.map(hashPassword)));
