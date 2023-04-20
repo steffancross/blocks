@@ -1,0 +1,33 @@
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
+
+// Submit order to server
+export const submitOrder = createAsyncThunk('checkout/submit', async (orderData) => {
+  const { data } = await axios.post('/api/checkout', orderData);
+  return data;
+});
+
+const checkoutSlice = createSlice({
+  name: 'checkout',
+  initialState: {
+    status: 'idle',
+    error: null,
+    confirmation: null,
+  },
+  reducers: {},
+  extraReducers: (builder) => {
+    builder.addCase(submitOrder.pending, (state) => {
+      state.status = 'pending';
+    });
+    builder.addCase(submitOrder.fulfilled, (state, action) => {
+      state.status = 'succeeded';
+      state.confirmation = action.payload;
+    });
+    builder.addCase(submitOrder.rejected, (state, action) => {
+      state.status = 'failed';
+      state.error = action.error.message;
+    });
+  },
+});
+
+export default checkoutSlice.reducer;
