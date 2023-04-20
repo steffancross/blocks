@@ -3,18 +3,39 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 //pulling the products in localStorage to render non-logged in users current products in cart
-let products = JSON.parse(localStorage.getItem("products"));
+const products = Object.values(localStorage).map((products) =>
+  JSON.parse(products)
+);
 
-
+//remove from cart by targeting id key
+const removeFromCart = (product) => {
+  localStorage.removeItem();
+  location.reload();
+};
 
 const Cart = () => {
   return (
+    //if logged in show cart which is pulling from state/db
+
+    //non logged in component
     <div id="cart-main">
-      {products.map((product) => (
-        <div className="product" key={product.id}>
-          <h3>Product: {product.name}</h3>
-        </div>
-      ))}
+      {products.length > 0 ? (
+        products.map((product) => (
+          <div className="product" key={product.id}>
+            <h3>Product: {product.name}</h3>
+            <button
+              id="remove-from-cart"
+              onClick={() => {
+                removeFromCart(product);
+              }}
+            >
+              Remove item from cart
+            </button>
+          </div>
+        ))
+      ) : (
+        <div>You have no items in your cart</div>
+      )}
     </div>
   );
 };

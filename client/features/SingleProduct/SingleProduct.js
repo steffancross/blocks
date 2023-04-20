@@ -18,9 +18,10 @@ const SingleProduct = () => {
 
   const addToLocal = (singleProduct) => {
     //check for existing products, if so, get them, if not, create array
-    let products = JSON.parse(localStorage.getItem("products")) || [];
-    products.push(singleProduct);
-    localStorage.setItem("products", JSON.stringify(products));
+    // let products = JSON.parse(localStorage.getItem("products")) || [];
+    // products.push(singleProduct);
+    let id = Math.floor(Math.random() * 100000);
+    localStorage.setItem(id, JSON.stringify(singleProduct));
   };
 
   return (
