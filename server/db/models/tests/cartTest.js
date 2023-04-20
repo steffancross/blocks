@@ -1,4 +1,4 @@
-const { models } = require('../index');
+const { models } = require('../../index');
 const { Cart } = models;
 
 async function Test() {
