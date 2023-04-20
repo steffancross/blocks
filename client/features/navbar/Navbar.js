@@ -30,6 +30,7 @@ const Navbar = () => {
           <div>
             <Link to="/login">Login</Link>
             <Link to="/signup">Sign Up</Link>
+            <Link to="/cart">My Cart</Link>
             <Link to="/products">All Products</Link>{" "}
             <Link to="/Home">Home</Link>
           </div>
