@@ -7,6 +7,7 @@ import { me } from "./store";
 import SingleProduct from "../features/SingleProduct/SingleProduct";
 import Products from "../features/allProducts/Products";
 import Cart from "../features/cart/Cart";
+import Checkout from "../features/Checkoutpage/checkoutpage";
 
 /**
  * COMPONENT
@@ -27,6 +28,8 @@ const AppRoutes = () => {
           <Route path="/*" element={<Home />} />
           <Route to="/home" element={<Home />} />
           <Route path="/products" element={<Products />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
         </Routes>
       ) : (
         <Routes>
@@ -45,6 +48,9 @@ const AppRoutes = () => {
           <Route path="/products/:id" element={<SingleProduct />} />
 
           <Route path="/products" element={<Products />} />
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/checkout" element={<Checkout />} />
+          <Route to="/home" element={<Home />} />
         </Routes>
       )}
     </div>
