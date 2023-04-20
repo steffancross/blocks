@@ -5,7 +5,6 @@ import {
   fetchSingleProductAsync,
   selectSingleProduct,
 } from "./SingleProductSlice";
-import Cart from "../cart/Cart";
 
 const SingleProduct = () => {
   const dispatch = useDispatch();

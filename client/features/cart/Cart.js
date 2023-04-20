@@ -5,6 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 //pulling the products in localStorage to render non-logged in users current products in cart
 let products = JSON.parse(localStorage.getItem("products"));
 
+
+
 const Cart = () => {
   return (
     <div id="cart-main">
