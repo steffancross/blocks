@@ -8,8 +8,8 @@ const Cart = require('./models/Cart');
 const CartItems = require('./models/CartItems');
 
 //associations could go here!
-Cart.belongsTo(User);
 User.hasMany(Cart);
+Cart.belongsTo(User);
 
 Cart.hasMany(CartItems);
 CartItems.belongsTo(Product);
