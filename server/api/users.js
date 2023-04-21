@@ -27,4 +27,23 @@ router.get("/", requireToken, isAdmin, async (req, res, next) => {
   }
 });
 
+router.get("/:id", requireToken, isAdmin, async (req, res, next) => {
+  try {
+    //Non-admins are unable to view all users in the system
+    if (!req.user.isAdmin) {
+      return res
+        .status(403)
+        .send(
+          "You are not an admin. Go to jail. Do not pass go. Do not collect $200."
+        );
+    }
+
+    // Find all users in the database, and only select their id and email fields
+    const singleUser = await User.findByPk(req.params.id);
+    res.json(singleUser);
+  } catch (err) {
+    next(err);
+  }
+});
+
 module.exports = router;
