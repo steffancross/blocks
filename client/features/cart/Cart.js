@@ -3,9 +3,16 @@ import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
 //pulling the products in localStorage to render non-logged in users current products in cart
-const products = Object.values(localStorage).map((products) =>
-  JSON.parse(products)
-);
+const products = Object.values(localStorage)
+  .map((product) => {
+    try {
+      return JSON.parse(product);
+    } catch (error) {
+      console.error("Error parsing product from localStorage:", error);
+      return null;
+    }
+  })
+  .filter((product) => product !== null);
 
 //remove from cart by targeting id key
 const removeFromCart = (product) => {
