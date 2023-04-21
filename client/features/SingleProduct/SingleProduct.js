@@ -33,7 +33,7 @@ const SingleProduct = () => {
           style={{ width: "300px" }} //temporary in-line styling
         />
         <h3>{singleProduct.name}</h3>
-        <h3>{singleProduct.price}</h3>
+        <h3>{`$${singleProduct.price}`}</h3>
         <h3>{singleProduct.description}</h3>
         <button
           id="addtolocal"
