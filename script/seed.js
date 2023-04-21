@@ -7,6 +7,12 @@ const {
 
 const userData = [
   {
+    name: 'admin',
+    password: 'password',
+    email: 'admin@email.com',
+    isAdmin: true,
+  },
+  {
     name: 'Wayland Riccardini',
     password: 'kW0c2CgX',
     email: 'wriccardini0@salon.com',
