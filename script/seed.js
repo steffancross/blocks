@@ -22,7 +22,7 @@ const userData = [
     name: 'Corine Ick',
     password: 'xirjMG',
     email: 'cick2@icq.com',
-    isAdmin: true,
+    isAdmin: false,
   },
   {
     name: 'Fiorenze Nolleth',
@@ -34,7 +34,7 @@ const userData = [
     name: 'Cory Wilkerson',
     password: '2GoZw2',
     email: 'cwilkerson4@dot.com',
-    isAdmin: true,
+    isAdmin: false,
   },
   {
     name: 'Carleen McKenny',
@@ -46,13 +46,13 @@ const userData = [
     name: 'Winifred Clohissy',
     password: 'ABboI5wQT',
     email: 'wclohissy6@dot.com',
-    isAdmin: true,
+    isAdmin: false,
   },
   {
     name: 'Quincey Durston',
     password: 'OoKMQPnY3E8v',
     email: 'qdurston7@cargocollective.com',
-    isAdmin: true,
+    isAdmin: false,
   },
   {
     name: 'Vittorio Querrard',

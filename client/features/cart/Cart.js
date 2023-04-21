@@ -1,26 +1,32 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
+import React, { useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { countAndFilter } from './functions';
 
 const Cart = () => {
   //create empty products array
   const [products, setProducts] = useState([]);
 
-
   //filter out tokens from local storage and then setProducts to the parsed key/value from the local storage
   useEffect(() => {
     let localProducts = Object.entries(localStorage).filter(
-      ([key]) => key !== "token"
+      ([key]) => !isNaN(parseInt(key[0]))
     );
-
+    console.log('localproducts---', localProducts);
     setProducts(
       localProducts.map(([key, value]) => ({
         key,
         ...JSON.parse(value),
       }))
     );
+    console.log('-----', products);
   }, []);
+
+  useEffect(() => {
+    const filteredProducts = countAndFilter(products);
+    setProducts(filteredProducts);
+    console.log('======', products);
+  }, [products]);
 
   //need an async function here so that sends the products to the cart via post thunk?
   const completePurchase = () => {
@@ -39,11 +45,11 @@ const Cart = () => {
     //non logged in component
     <div id="cart-main">
       {products.length > 0 ? (
-        products.map((product) => (
-          <div className="product" key={product.id}>
+        products.map((product, index) => (
+          <div className="product" key={index}>
             <h3>Product: {product.name}</h3>
             <h3>{`$${product.price}`}</h3>
-            <h3>Quantity: </h3>
+            <h3>Quantity: {product.cartquantity}</h3>
             <button
               id="remove-from-cart"
               onClick={() => {
