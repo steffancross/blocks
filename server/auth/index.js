@@ -15,7 +15,7 @@ router.post("/login", async (req, res, next) => {
 
 router.post("/signup", async (req, res, next) => {
   try {
-    //Clients are prevented from creating admin account
+    //Clients are prevented from making themselves admin
     const { name, email, password } = req.body;
     const user = await User.create({ name, email, password });
 
