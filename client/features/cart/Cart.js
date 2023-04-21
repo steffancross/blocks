@@ -2,9 +2,11 @@ import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 
+
 const Cart = () => {
   //create empty products array
   const [products, setProducts] = useState([]);
+
 
   //filter out tokens from local storage and then setProducts to the parsed key/value from the local storage
   useEffect(() => {
