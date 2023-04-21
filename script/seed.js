@@ -1,133 +1,139 @@
-'use strict';
+"use strict";
 
 const {
   db,
   models: { User, Product },
-} = require('../server/db');
+} = require("../server/db");
 
 const userData = [
   {
-    name: 'Wayland Riccardini',
-    password: 'kW0c2CgX',
-    email: 'wriccardini0@salon.com',
-    isAdmin: false,
-  },
-  {
-    name: 'Ginevra Paget',
-    password: '69Inn12m5Y',
-    email: 'gpaget1@ucoz.com',
-    isAdmin: false,
-  },
-  {
-    name: 'Corine Ick',
-    password: 'xirjMG',
-    email: 'cick2@icq.com',
+    name: "admin",
+    password: "password",
+    email: "admin@email.com",
     isAdmin: true,
   },
   {
-    name: 'Fiorenze Nolleth',
-    password: 'VqpEsuGj19LC',
-    email: 'fnolleth3@devhub.com',
+    name: "Wayland Riccardini",
+    password: "kW0c2CgX",
+    email: "wriccardini0@salon.com",
     isAdmin: false,
   },
   {
-    name: 'Cory Wilkerson',
-    password: '2GoZw2',
-    email: 'cwilkerson4@dot.com',
-    isAdmin: true,
-  },
-  {
-    name: 'Carleen McKenny',
-    password: 'ebXscay8',
-    email: 'cmckenny5@jigsy.com',
+    name: "Ginevra Paget",
+    password: "69Inn12m5Y",
+    email: "gpaget1@ucoz.com",
     isAdmin: false,
   },
   {
-    name: 'Winifred Clohissy',
-    password: 'ABboI5wQT',
-    email: 'wclohissy6@dot.com',
-    isAdmin: true,
-  },
-  {
-    name: 'Quincey Durston',
-    password: 'OoKMQPnY3E8v',
-    email: 'qdurston7@cargocollective.com',
-    isAdmin: true,
-  },
-  {
-    name: 'Vittorio Querrard',
-    password: 'voF9tVPW',
-    email: 'vquerrard8@webs.com',
+    name: "Corine Ick",
+    password: "xirjMG",
+    email: "cick2@icq.com",
     isAdmin: false,
   },
   {
-    name: 'Efren Mayward',
-    password: 'PddmuMBXuxG',
-    email: 'emayward9@discovery.com',
+    name: "Fiorenze Nolleth",
+    password: "VqpEsuGj19LC",
+    email: "fnolleth3@devhub.com",
+    isAdmin: false,
+  },
+  {
+    name: "Cory Wilkerson",
+    password: "2GoZw2",
+    email: "cwilkerson4@dot.com",
+    isAdmin: false,
+  },
+  {
+    name: "Carleen McKenny",
+    password: "ebXscay8",
+    email: "cmckenny5@jigsy.com",
+    isAdmin: false,
+  },
+  {
+    name: "Winifred Clohissy",
+    password: "ABboI5wQT",
+    email: "wclohissy6@dot.com",
+    isAdmin: false,
+  },
+  {
+    name: "Quincey Durston",
+    password: "OoKMQPnY3E8v",
+    email: "qdurston7@cargocollective.com",
+    isAdmin: false,
+  },
+  {
+    name: "Vittorio Querrard",
+    password: "voF9tVPW",
+    email: "vquerrard8@webs.com",
+    isAdmin: false,
+  },
+  {
+    name: "Efren Mayward",
+    password: "PddmuMBXuxG",
+    email: "emayward9@discovery.com",
     isAdmin: false,
   },
 ];
 
 const productData = [
   {
-    name: 'No7 Protect and Perfect Foundation Sunscreen Broad Spectrum SPF 15 Deeply Beige',
+    name: "No7 Protect and Perfect Foundation Sunscreen Broad Spectrum SPF 15 Deeply Beige",
     price: 99.39,
     quantity: 5,
-    description: 'Sharable fresh-thinking standardization',
+    description: "Sharable fresh-thinking standardization",
   },
   {
-    name: 'Kogenate FS',
+    name: "Kogenate FS",
     price: 58.17,
     quantity: 5,
-    description: 'Universal intangible utilisation',
+    description: "Universal intangible utilisation",
   },
   {
-    name: 'Nitrous Oxide',
+    name: "Nitrous Oxide",
     price: 84.19,
     quantity: 3,
-    description: 'Right-sized high-level capacity',
+    description: "Right-sized high-level capacity",
   },
   {
-    name: 'Amoxicillin and Clavulanate Potassium',
+    name: "Amoxicillin and Clavulanate Potassium",
     price: 35.31,
     quantity: 2,
-    description: 'Persevering neutral middleware',
+    description: "Persevering neutral middleware",
   },
   {
-    name: 'Amitriptyline Hydrochloride',
+    name: "Amitriptyline Hydrochloride",
     price: 70.87,
     quantity: 8,
-    description: 'Reverse-engineered systematic application',
+    description: "Reverse-engineered systematic application",
   },
   {
-    name: 'Viramune',
+    name: "Viramune",
     price: 25.55,
     quantity: 5,
-    description: 'Cloned 24 hour challenge',
+    description: "Cloned 24 hour challenge",
   },
   {
-    name: 'Levoxyl',
+    name: "Levoxyl",
     price: 67.09,
     quantity: 7,
-    description: 'Team-oriented tertiary open system',
+    description: "Team-oriented tertiary open system",
   },
   {
-    name: 'ANTI BACTERIAL HAND SANITIZER',
+    name: "ANTI BACTERIAL HAND SANITIZER",
     price: 74.45,
     quantity: 4,
-    description: 'Profound user-facing archive',
+    description: "Profound user-facing archive",
   },
   {
-    name: 'Cepacol',
+    name: "Cepacol",
     price: 69.11,
     quantity: 4,
-    description: 'Enterprise-wide non-volatile portal',
+    description: "Enterprise-wide non-volatile portal",
   },
   {
-    name: 'Tramapap',
+    name: "Tramapap",
     price: 73.61,
     quantity: 5,
-    description: 'Versatile 24 hour frame',
+    description: "Versatile 24 hour frame",
   },
 ];
 
@@ -137,7 +143,7 @@ const productData = [
  */
 async function seed() {
   await db.sync({ force: true }); // clears db and matches models to tables
-  console.log('db synced!');
+  console.log("db synced!");
 
   // Creating Users
   const users = await Promise.all(
@@ -164,16 +170,16 @@ async function seed() {
  The `seed` function is concerned only with modifying the database.
 */
 async function runSeed() {
-  console.log('seeding...');
+  console.log("seeding...");
   try {
     await seed();
   } catch (err) {
     console.error(err);
     process.exitCode = 1;
   } finally {
-    console.log('closing db connection');
+    console.log("closing db connection");
     await db.close();
-    console.log('db connection closed');
+    console.log("db connection closed");
   }
 }
 
