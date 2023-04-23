@@ -16,12 +16,12 @@ router.post("/login", async (req, res, next) => {
 router.post("/signup", async (req, res, next) => {
   try {
     //Clients are prevented from making themselves admin
-    const { name, email, password } = req.body;
-    const user = await User.create({ name, email, password });
+    const { fullName, email, password } = req.body;
+    const user = await User.create({ fullName, email, password });
 
     res.send({ token: await user.generateToken() });
   } catch (err) {
-    if (err.name === "SequelizeUniqueConstraintError") {
+    if (err.fullName === "SequelizeUniqueConstraintError") {
       res.status(401).send("User already exists");
     } else {
       next(err);

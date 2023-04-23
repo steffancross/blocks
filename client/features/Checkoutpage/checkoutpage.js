@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { fetchCartTotal } from "../cart/CartSlice";
+// import { fetchCartTotal } from "../cart/CartSlice";
 import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
@@ -73,7 +73,7 @@ const Checkout = () => {
             ))}
           </div>
           <br />
-          <h4>Total: ${fetchCartTotal(cartItems).toFixed(2)}</h4>
+          {/* <h4>Total: ${fetchCartTotal(cartItems).toFixed(2)}</h4> */}
           <br />
           <button type="submit">Complete Order</button>
         </form>

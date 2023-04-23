@@ -17,7 +17,8 @@ const AuthForm = ({ name, displayName }) => {
     const formName = evt.target.name;
     const email = evt.target.email.value;
     const password = evt.target.password.value;
-    dispatch(authenticate({ email, password, method: formName }));
+    const fullName = evt.target.fullName.value;
+    dispatch(authenticate({ email, fullName, password, method: formName }));
   };
 
   return (
@@ -28,6 +29,12 @@ const AuthForm = ({ name, displayName }) => {
             <small>Email</small>
           </label>
           <input name="email" type="text" />
+        </div>
+        <div>
+          <label htmlFor="fullName">
+            <small>Full Name</small>
+          </label>
+          <input name="fullName" type="text" />
         </div>
         <div>
           <label htmlFor="password">
