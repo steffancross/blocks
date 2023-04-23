@@ -1,55 +1,28 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { countAndFilter } from './functions';
+import { fetchCartAsync } from './CartSlice';
 
 const Cart = () => {
-  //create empty products array
-  const [products, setProducts] = useState([]);
-
-  //filter out tokens from local storage and then setProducts to the parsed key/value from the local storage
-  useEffect(() => {
-    let localProducts = Object.entries(localStorage).filter(
-      ([key]) => !isNaN(parseInt(key[0]))
-    );
-    console.log('localproducts---', localProducts);
-    setProducts(
-      localProducts.map(([key, value]) => ({
-        key,
-        ...JSON.parse(value),
-      }))
-    );
-    console.log('-----', products);
-  }, []);
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart.cartitems);
+  const user = useSelector((state) => state.auth.me);
 
   useEffect(() => {
-    const filteredProducts = countAndFilter(products);
-    setProducts(filteredProducts);
-    console.log('======', products);
-  }, [products]);
-
-  //need an async function here so that sends the products to the cart via post thunk?
-  const completePurchase = () => {
-    console.log(products);
-  };
-
-  //remove from cart by targeting product key which was added in the useEffect
-  const removeFromCart = (product) => {
-    localStorage.removeItem(product.key);
-    location.reload();
-  };
+    // checks if user exists before fetching, if didn't have this, on page refresh user hasn't loaded yet and it breaks
+    if (user) {
+      const userId = user.id;
+      dispatch(fetchCartAsync({ userId }));
+    }
+  }, [dispatch, user]);
 
   return (
-    //if logged in show cart which is pulling from state/db
-
-    //non logged in component
     <div id="cart-main">
-      {products.length > 0 ? (
-        products.map((product, index) => (
+      {cart && cart.length > 0 ? (
+        cart.map((item, index) => (
           <div className="product" key={index}>
-            <h3>Product: {product.name}</h3>
-            <h3>{`$${product.price}`}</h3>
-            <h3>Quantity: {product.cartquantity}</h3>
+            <h3>Product: {item.product.name}</h3>
+            <h3>{`$${item.product.price}`}</h3>
+            <h3>Quantity: {item.quantity}</h3>
             <button
               id="remove-from-cart"
               onClick={() => {

@@ -1,20 +1,21 @@
-import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
-import axios from "axios";
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-export const addProductToCartAsync = createAsyncThunk(
-  "addProduct",
-  async (id) => {
-    const { data } = await axios.get(`/api/products/${id}`);
+export const fetchCartAsync = createAsyncThunk(
+  'fetchCart/get',
+  async ({ userId }) => {
+    // using this syntax for req.query otherwise can't pass info in get request
+    const { data } = await axios.get(`/api/carts?userId=${userId}`);
     return data;
   }
 );
 
 const cartSlice = createSlice({
-  name: "cart",
+  name: 'cart',
   initialState: {},
   reducers: {},
   extraReducers: (builder) => {
-    builder.addCase(addProductToCartAsync.fulfilled, (state, action) => {
+    builder.addCase(fetchCartAsync.fulfilled, (state, action) => {
       return action.payload;
     });
   },

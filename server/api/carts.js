@@ -3,14 +3,31 @@ const router = express.Router();
 const { models } = require('../db');
 const { Product, User, Cart, CartItems } = models;
 
-// router.get("/:id/cart", async (req, res, next) => {
-//   try {
-//     const cartItems = await CartItems.findAll();
-//     res.send(cartItems);
-//   } catch (err) {
-//     next(err);
-//   }
-// });
+router.get('/', async (req, res, next) => {
+  try {
+    // pulls userId
+    const { userId } = req.query;
+
+    // gets cart info, attributes make it only return the info we're interested in
+    const cart = await Cart.findOne({
+      where: {
+        userId: userId,
+      },
+      include: {
+        model: CartItems,
+        attributes: ['id', 'quantity', 'productId'],
+        include: {
+          model: Product,
+          attributes: ['name', 'price', 'image'],
+        },
+      },
+    });
+
+    res.send(cart);
+  } catch (err) {
+    next(err);
+  }
+});
 
 // Add Item to Cart
 router.post('/', async (req, res, next) => {
