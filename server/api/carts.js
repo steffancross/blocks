@@ -77,13 +77,64 @@ router.delete('/', async (req, res, next) => {
   try {
     const { cartId, productId, userId } = req.query;
 
-    // finds specific row
+    // finds specific row and deletes item
     const cartItem = await CartItems.findOne({
       where: { cartId: cartId, productId: productId },
     });
     await cartItem.destroy();
 
-    // gets cart info, attributes make it only return the info we're interested in
+    // refetch updated cart
+    const newCart = await Cart.findOne({
+      where: {
+        userId: userId,
+      },
+      include: {
+        model: CartItems,
+        attributes: ['id', 'quantity', 'productId'],
+        include: {
+          model: Product,
+          attributes: ['name', 'price', 'image'],
+        },
+      },
+    });
+
+    res.send(newCart);
+  } catch (err) {
+    next(err);
+  }
+});
+
+// edit quantity in cart
+router.put('/', async (req, res, next) => {
+  try {
+    const { userId, productId, plusOrMinus } = req.body;
+
+    // find cart associated with user
+    const cart = await Cart.findOne({
+      where: {
+        userId: userId,
+        complete: false,
+      },
+    });
+
+    // see if cartItem for that user/cart already exists
+    let cartItem = await CartItems.findOne({
+      where: {
+        cartId: cart.id,
+        productId: productId,
+      },
+    });
+
+    // check to increase or decrease quantity
+    if (plusOrMinus > 0) {
+      cartItem.quantity += 1;
+      await cartItem.save();
+    } else if (plusOrMinus < 0 && cartItem.quantity >= 2) {
+      cartItem.quantity -= 1;
+      await cartItem.save();
+    }
+
+    // refetch updated cart
     const newCart = await Cart.findOne({
       where: {
         userId: userId,

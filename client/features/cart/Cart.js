@@ -1,6 +1,10 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { fetchCartAsync, removeFromCartAsync } from './CartSlice';
+import {
+  fetchCartAsync,
+  removeFromCartAsync,
+  editQuantityAsync,
+} from './CartSlice';
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -23,14 +27,32 @@ const Cart = () => {
     }
   };
 
+  const editQuantity = (productId, plusOrMinus) => {
+    dispatch(editQuantityAsync({ userId, productId, plusOrMinus }));
+  };
+
   return (
     <div id="cart-main">
       {cartitems && cartitems.length > 0 ? (
         cartitems.map((cartitem, index) => (
-          <div className="product" key={index}>
+          <div className="product" key={cartitem.productId}>
             <h3>Product: {cartitem.product.name}</h3>
             <h3>{`$${cartitem.product.price}`}</h3>
-            <h3>Quantity: {cartitem.quantity}</h3>
+            <div className="edit-quantity">
+              <button
+                id="reduce-quantity"
+                onClick={() => editQuantity(cartitem.productId, -1)}
+              >
+                -
+              </button>
+              <h3>Quantity: {cartitem.quantity}</h3>
+              <button
+                id="increase-quantity"
+                onClick={() => editQuantity(cartitem.productId, 1)}
+              >
+                +
+              </button>
+            </div>
             <button
               id="remove-from-cart"
               onClick={() => {
