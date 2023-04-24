@@ -37,6 +37,7 @@ const Cart = () => {
         cartitems.map((cartitem, index) => (
           <div className="product" key={cartitem.productId}>
             <h3>Product: {cartitem.product.name}</h3>
+            <img src ={cartitem.product.image}/>
             <h3>{`$${cartitem.product.price}`}</h3>
             <div className="edit-quantity">
               <button
