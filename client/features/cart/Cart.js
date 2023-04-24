@@ -1,10 +1,11 @@
-import React, { useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link } from "react-router-dom"; // import Link component
 import {
   fetchCartAsync,
   removeFromCartAsync,
   editQuantityAsync,
-} from './CartSlice';
+} from "./CartSlice";
 
 const Cart = () => {
   const dispatch = useDispatch();
@@ -14,7 +15,6 @@ const Cart = () => {
   const userId = user.id;
 
   useEffect(() => {
-    // checks if user exists before fetching, if didn't have this, on page refresh user hasn't loaded yet and it breaks
     if (user) {
       dispatch(fetchCartAsync({ userId }));
     }
@@ -31,13 +31,17 @@ const Cart = () => {
     dispatch(editQuantityAsync({ userId, productId, plusOrMinus }));
   };
 
+  const completePurchase = () => {
+    alert("Proceeding to Checkout!");
+  };
+
   return (
     <div id="cart-main">
       {cartitems && cartitems.length > 0 ? (
         cartitems.map((cartitem, index) => (
           <div className="product" key={cartitem.productId}>
             <h3>Product: {cartitem.product.name}</h3>
-            <img src ={cartitem.product.image}/>
+            <img src={cartitem.product.image} alt={cartitem.product.name} />
             <h3>{`$${cartitem.product.price}`}</h3>
             <div className="edit-quantity">
               <button
@@ -67,14 +71,12 @@ const Cart = () => {
       ) : (
         <div>You have no items in your cart</div>
       )}
-      <button
-        id="complete-purchase"
-        onClick={() => {
-          completePurchase();
-        }}
-      >
-        Complete your purchase
-      </button>
+      {/* Replace the button with a Link */}
+      {cartitems && cartitems.length > 0 && (
+        <Link to="/checkout" onClick={completePurchase}>
+          <button id="complete-purchase">Checkout</button>
+        </Link>
+      )}
     </div>
   );
 };
