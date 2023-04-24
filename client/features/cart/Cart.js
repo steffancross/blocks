@@ -1,53 +1,62 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import {
+  fetchCartAsync,
+  removeFromCartAsync,
+  editQuantityAsync,
+} from './CartSlice';
 
 const Cart = () => {
-  //create empty products array
-  const [products, setProducts] = useState([]);
+  const dispatch = useDispatch();
+  const cart = useSelector((state) => state.cart);
+  const cartitems = useSelector((state) => state.cart.cartitems);
+  const user = useSelector((state) => state.auth.me);
+  const userId = user.id;
 
-
-  //filter out tokens from local storage and then setProducts to the parsed key/value from the local storage
   useEffect(() => {
-    let localProducts = Object.entries(localStorage).filter(
-      ([key]) => key !== "token"
-    );
+    // checks if user exists before fetching, if didn't have this, on page refresh user hasn't loaded yet and it breaks
+    if (user) {
+      dispatch(fetchCartAsync({ userId }));
+    }
+  }, [dispatch, user]);
 
-    setProducts(
-      localProducts.map(([key, value]) => ({
-        key,
-        ...JSON.parse(value),
-      }))
-    );
-  }, []);
-
-  //need an async function here so that sends the products to the cart via post thunk?
-  const completePurchase = () => {
-    console.log(products);
+  const removeFromCart = (productId) => {
+    const cartId = cart.id;
+    if (user) {
+      dispatch(removeFromCartAsync({ cartId, productId, userId }));
+    }
   };
 
-  //remove from cart by targeting product key which was added in the useEffect
-  const removeFromCart = (product) => {
-    localStorage.removeItem(product.key);
-    location.reload();
+  const editQuantity = (productId, plusOrMinus) => {
+    dispatch(editQuantityAsync({ userId, productId, plusOrMinus }));
   };
 
   return (
-    //if logged in show cart which is pulling from state/db
-
-    //non logged in component
     <div id="cart-main">
-      {products.length > 0 ? (
-        products.map((product) => (
-          <div className="product" key={product.id}>
-            <h3>Product: {product.name}</h3>
-            <h3>{`$${product.price}`}</h3>
-            <h3>Quantity: </h3>
+      {cartitems && cartitems.length > 0 ? (
+        cartitems.map((cartitem, index) => (
+          <div className="product" key={cartitem.productId}>
+            <h3>Product: {cartitem.product.name}</h3>
+            <h3>{`$${cartitem.product.price}`}</h3>
+            <div className="edit-quantity">
+              <button
+                id="reduce-quantity"
+                onClick={() => editQuantity(cartitem.productId, -1)}
+              >
+                -
+              </button>
+              <h3>Quantity: {cartitem.quantity}</h3>
+              <button
+                id="increase-quantity"
+                onClick={() => editQuantity(cartitem.productId, 1)}
+              >
+                +
+              </button>
+            </div>
             <button
               id="remove-from-cart"
               onClick={() => {
-                removeFromCart(product);
+                removeFromCart(cartitem.productId);
               }}
             >
               Remove item from cart

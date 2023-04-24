@@ -1,27 +1,31 @@
-import React, { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import React, { useEffect } from 'react';
+import { useParams } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 import {
   fetchSingleProductAsync,
   selectSingleProduct,
-} from "./SingleProductSlice";
+  addProductToCartAsync,
+} from './SingleProductSlice';
 
 const SingleProduct = () => {
   const dispatch = useDispatch();
   const { id } = useParams();
 
   const singleProduct = useSelector(selectSingleProduct);
+  const user = useSelector((state) => state.auth.me);
 
   useEffect(() => {
     dispatch(fetchSingleProductAsync(id));
   }, [dispatch]);
 
-  const addToLocal = (singleProduct) => {
-    //check for existing products, if so, get them, if not, create array
-    // let products = JSON.parse(localStorage.getItem("products")) || [];
-    // products.push(singleProduct);
-    let id = Math.floor(Math.random() * 100000);
-    localStorage.setItem(id, JSON.stringify(singleProduct));
+  const addToCart = (singleProduct) => {
+    const userIdToSend = user.id;
+    dispatch(
+      addProductToCartAsync({
+        userId: userIdToSend,
+        productId: singleProduct.id,
+      })
+    );
   };
 
   return (
@@ -30,7 +34,7 @@ const SingleProduct = () => {
         <img
           src={singleProduct.image}
           alt="just an image"
-          style={{ width: "300px" }} //temporary in-line styling
+          style={{ width: '300px' }} //temporary in-line styling
         />
         <h3>{singleProduct.name}</h3>
         <h3>{`$${singleProduct.price}`}</h3>
@@ -38,7 +42,7 @@ const SingleProduct = () => {
         <button
           id="addtolocal"
           onClick={() => {
-            addToLocal(singleProduct);
+            addToCart(singleProduct);
           }}
         >
           Add to Cart
