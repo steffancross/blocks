@@ -29,11 +29,11 @@ const Navbar = () => {
           </div>
         ) : (
           <div>
+            <Link to="/Home">Home</Link>
             <Link to="/login">Login</Link>
-            <Link to="/signup">Sign Up</Link>
             <Link to="/cart">My Cart</Link>
             <Link to="/products">All Products</Link>
-            <Link to="/Home">Home</Link>
+            <Link to="/signup">Sign Up</Link>
           </div>
         )}
       </nav>
