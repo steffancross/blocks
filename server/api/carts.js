@@ -1,6 +1,6 @@
-const express = require('express');
+const express = require("express");
 const router = express.Router();
-const { models } = require('../db');
+const { models } = require("../db");
 const { Product, User, Cart, CartItems } = models;
 
 // Gets cart info
@@ -66,7 +66,7 @@ router.post('/', async (req, res, next) => {
       });
     }
 
-    res.send('cart updated');
+    res.send("cart updated");
   } catch (err) {
     next(err);
   }
