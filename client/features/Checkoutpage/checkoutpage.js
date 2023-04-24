@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
-import { fetchCartTotal } from "../cart/CartSlice";
+// import { fetchCartTotal } from "../cart/CartSlice";
 import { useNavigate } from "react-router-dom";
 
 const Checkout = () => {
