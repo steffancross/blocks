@@ -1,7 +1,8 @@
-// const express = require("express");
-// const router = express.Router();
-// const { models } = require("../db");
-// const { Product } = models;
+//const express = require("express");
+//const router = express.Router();
+//const { models } = require("../db");
+//const { Product } = models;
+
 
 const router = require("express").Router();
 const {
@@ -41,5 +42,6 @@ router.post("/", async (req, res, next) => {
     next(err);
   }
 });
+
 
 module.exports = router;

@@ -44,3 +44,14 @@ app.use((err, req, res, next) => {
   console.error(err.stack);
   res.status(err.status || 500).send(err.message || 'Internal server error.');
 });
+
+app.put("/api/checkout", (req, res) => {
+  const userId = req.body.userId;
+  
+  const confirmation = {
+    orderId: 123,
+    message: "Order submitted successfully",
+  };
+
+  res.send(confirmation);
+});

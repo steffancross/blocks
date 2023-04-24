@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import {
   fetchCartAsync,
   removeFromCartAsync,
@@ -25,8 +25,12 @@ const Checkout = () => {
 
   const handleCheckout = (e) => {
     e.preventDefault();
-    navigate("/confirmation");
+    const userId = cart.userId;
+    dispatch(fetchCartAsync({ userId })).then(() => {
+      navigate("/confirmation");
+    });
   };
+
 
   const removeFromCart = (productId) => {
     const cartId = cart.id;
@@ -43,6 +47,11 @@ const Checkout = () => {
     const userId = cart.userId;
     dispatch(fetchCartAsync({ userId }));
   }, [dispatch]);
+
+
+const completeCheckout = (e) => {
+  e.preventDefault();
+};
 
 const fetchCartTotal = (cart) => {
   let total = 0;
@@ -136,11 +145,17 @@ const fetchCartTotal = (cart) => {
           </div>
           <br />
           <h4>Total: ${fetchCartTotal(cart).toFixed(2)}</h4>
-          <button type="submit">Complete Purchase</button>
+          <button
+            id="complete-checkout"
+            onClick={() => navigate("/confirmation")}
+          >
+            Complete Checkout
+          </button>
         </form>
       </div>
     </>
   );
 };
+
 
 export default Checkout;

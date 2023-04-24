@@ -19,6 +19,7 @@ const SingleProduct = () => {
   }, [dispatch]);
 
   const addToCart = (singleProduct) => {
+    
     const userIdToSend = user.id;
     dispatch(
       addProductToCartAsync({
