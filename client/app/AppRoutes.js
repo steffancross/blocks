@@ -8,6 +8,7 @@ import SingleProduct from "../features/SingleProduct/SingleProduct";
 import Products from "../features/allProducts/Products";
 import Cart from "../features/cart/Cart";
 import Checkout from "../features/Checkoutpage/checkoutpage";
+import Confirmation from "../features/Confirmation Page/confirmation";
 
 /**
  * COMPONENT
@@ -31,6 +32,7 @@ const AppRoutes = () => {
           <Route path="/cart" element={<Cart />} />
           <Route path="/products/:id" element={<SingleProduct />} />
           <Route path="/checkout" element={<Checkout />} />
+          <Route path="/confirmation" element={<Confirmation />} />
         </Routes>
       ) : (
         <Routes>

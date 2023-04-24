@@ -2,10 +2,11 @@ import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import axios from 'axios';
 
 // Submit order to server
-export const submitOrder = createAsyncThunk('checkout/submit', async (orderData) => {
-  const { data } = await axios.post('/api/checkout', orderData);
+export const submitOrder = createAsyncThunk('checkout/submit', async ({userId}) => {
+  const { data } = await axios.put('/api/checkout', {userId});
   return data;
 });
+
 
 const checkoutSlice = createSlice({
   name: 'checkout',
