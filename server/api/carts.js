@@ -3,6 +3,7 @@ const router = express.Router();
 const { models } = require('../db');
 const { Product, User, Cart, CartItems } = models;
 
+// Gets cart info
 router.get('/', async (req, res, next) => {
   try {
     // pulls userId
@@ -29,7 +30,7 @@ router.get('/', async (req, res, next) => {
   }
 });
 
-// Add Item to Cart
+// Add item to Cart
 router.post('/', async (req, res, next) => {
   try {
     const { userId, productId } = req.body;
@@ -66,6 +67,38 @@ router.post('/', async (req, res, next) => {
     }
 
     res.send('cart updated');
+  } catch (err) {
+    next(err);
+  }
+});
+
+// Delete item from cart
+router.delete('/', async (req, res, next) => {
+  try {
+    const { cartId, productId, userId } = req.query;
+
+    // finds specific row
+    const cartItem = await CartItems.findOne({
+      where: { cartId: cartId, productId: productId },
+    });
+    await cartItem.destroy();
+
+    // gets cart info, attributes make it only return the info we're interested in
+    const newCart = await Cart.findOne({
+      where: {
+        userId: userId,
+      },
+      include: {
+        model: CartItems,
+        attributes: ['id', 'quantity', 'productId'],
+        include: {
+          model: Product,
+          attributes: ['name', 'price', 'image'],
+        },
+      },
+    });
+
+    res.send(newCart);
   } catch (err) {
     next(err);
   }
