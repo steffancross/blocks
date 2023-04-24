@@ -75,3 +75,124 @@ nav a:hover {
 .edit-quantity {
   display: flex;
 }
+
+/* Main cart container */
+#cart-main {
+  width: 80%;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Individual product item */
+.product {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1.5rem;
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 8px;
+  padding: 1rem;
+}
+
+/* Product image */
+.product img {
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
+  margin-right: 1rem;
+}
+
+/* Product name */
+.product h3 {
+  margin: 0;
+  font-size: 1.2rem;
+  font-weight: 600;
+  color: #333;
+}
+
+/* Product price */
+.product span {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #444;
+}
+
+/* Edit quantity buttons */
+.edit-quantity {
+  display: flex;
+  align-items: center;
+}
+
+/* Quantity label */
+.edit-quantity h3 {
+  margin: 0;
+  margin-right: 1rem;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Quantity buttons */
+.edit-quantity button {
+  background-color: #fff;
+  color: #333;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+.edit-quantity button:hover {
+  background-color: #eee;
+}
+
+/* Remove from cart button */
+#remove-from-cart {
+  background-color: #f44336;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+#remove-from-cart:hover {
+  background-color: #e53935;
+}
+
+/* Complete purchase button */
+#complete-purchase {
+  margin-top: 1.5rem;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 0.8rem 1.5rem;
+  font-size: 1rem;
+  cursor: pointer;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease-in-out;
+}
+
+#complete-purchase:hover {
+  background-color: #43a047;
+}
+
+/* Empty cart message */
+#cart-main>div:first-child {
+  text-align: center;
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #333;
+  margin-top: 2rem;
+}
