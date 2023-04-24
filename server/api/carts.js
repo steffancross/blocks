@@ -4,7 +4,7 @@ const { models } = require("../db");
 const { Product, User, Cart, CartItems } = models;
 
 // Gets cart info
-router.get('/', async (req, res, next) => {
+router.get("/", async (req, res, next) => {
   try {
     // pulls userId
     const { userId } = req.query;
@@ -16,13 +16,16 @@ router.get('/', async (req, res, next) => {
       },
       include: {
         model: CartItems,
-        attributes: ['id', 'quantity', 'productId'],
+        attributes: ["id", "quantity", "productId"],
         include: {
           model: Product,
-          attributes: ['name', 'price', 'image'],
+          attributes: ["name", "price", "image"],
         },
       },
     });
+
+    // Sort the cartitems by productId in ascending order
+    cart.cartitems.sort((a, b) => a.productId - b.productId);
 
     res.send(cart);
   } catch (err) {
@@ -31,7 +34,7 @@ router.get('/', async (req, res, next) => {
 });
 
 // Add item to Cart
-router.post('/', async (req, res, next) => {
+router.post("/", async (req, res, next) => {
   try {
     const { userId, productId } = req.body;
 
@@ -73,7 +76,7 @@ router.post('/', async (req, res, next) => {
 });
 
 // Delete item from cart
-router.delete('/', async (req, res, next) => {
+router.delete("/", async (req, res, next) => {
   try {
     const { cartId, productId, userId } = req.query;
 
@@ -90,13 +93,16 @@ router.delete('/', async (req, res, next) => {
       },
       include: {
         model: CartItems,
-        attributes: ['id', 'quantity', 'productId'],
+        attributes: ["id", "quantity", "productId"],
         include: {
           model: Product,
-          attributes: ['name', 'price', 'image'],
+          attributes: ["name", "price", "image"],
         },
       },
     });
+
+    // Sort the cartitems by productId in ascending order
+    newCart.cartitems.sort((a, b) => a.productId - b.productId);
 
     res.send(newCart);
   } catch (err) {
@@ -105,7 +111,7 @@ router.delete('/', async (req, res, next) => {
 });
 
 // edit quantity in cart
-router.put('/', async (req, res, next) => {
+router.put("/", async (req, res, next) => {
   try {
     const { userId, productId, plusOrMinus } = req.body;
 
@@ -141,13 +147,16 @@ router.put('/', async (req, res, next) => {
       },
       include: {
         model: CartItems,
-        attributes: ['id', 'quantity', 'productId'],
+        attributes: ["id", "quantity", "productId"],
         include: {
           model: Product,
-          attributes: ['name', 'price', 'image'],
+          attributes: ["name", "price", "image"],
         },
       },
     });
+
+    // Sort the cartitems by productId in ascending order
+    newCart.cartitems.sort((a, b) => a.productId - b.productId);
 
     res.send(newCart);
   } catch (err) {
