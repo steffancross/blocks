@@ -1,7 +1,14 @@
+//const express = require("express");
+//const router = express.Router();
+//const { models } = require("../db");
+//const { Product } = models;
+
+
 const router = require("express").Router();
 const {
   models: { Product },
 } = require("../db");
+const { requireToken, isAdmin } = require("./gatekeepingMiddleware.js");
 
 router.get("/", async (req, res, next) => {
   try {
@@ -35,5 +42,6 @@ router.post("/", async (req, res, next) => {
     next(err);
   }
 });
+
 
 module.exports = router;
