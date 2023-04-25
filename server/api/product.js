@@ -3,7 +3,6 @@
 //const { models } = require("../db");
 //const { Product } = models;
 
-
 const router = require("express").Router();
 const {
   models: { Product },
