@@ -256,6 +256,7 @@ button:hover {
   opacity: 0.8;
 }
 
+<<<<<<< HEAD
 .logo {
   display: flex;
   flex-direction: column;
@@ -283,3 +284,64 @@ button:hover {
   font-family: "Arial Rounded MT Bold", sans-serif;
   font-variant: small-caps;
 }
+=======
+/* Home component styles */
+
+/* Container */
+.home-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f5f5f5;
+}
+
+/* Title */
+.home-title {
+  font-size: 3rem;
+  font-weight: bold;
+  margin-bottom: 2rem;
+  color: #444444;
+}
+
+/* Subtitle */
+.home-subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 1rem;
+  color: #888888;
+}
+
+/* Button */
+.home-button {
+  display: inline-block;
+  padding: 1rem 2rem;
+  border: none;
+  border-radius: 4px;
+  background-color: #4CAF50;
+  color: white;
+  font-size: 1.2rem;
+  font-weight: bold;
+  text-decoration: none;
+  transition: background-color 0.3s ease;
+}
+
+.home-button:hover {
+  background-color: #3e8e41;
+}
+
+/* Media queries */
+@media screen and (max-width: 768px) {
+  .home-title {
+    font-size: 2rem;
+  }
+
+  .home-subtitle {
+    font-size: 1rem;
+  }
+
+  .home-button {
+    font-size: 1rem;
+  }
+}
+>>>>>>> f9b17caa77b35d492cc9f0751b82184587a76133

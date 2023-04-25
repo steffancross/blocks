@@ -1,15 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
+<<<<<<< HEAD
 import { useNavigate } from "react-router-dom";
+=======
+import { Link } from "react-router-dom";
+>>>>>>> f9b17caa77b35d492cc9f0751b82184587a76133
 import {
   fetchCartAsync,
   removeFromCartAsync,
   editQuantityAsync,
-} from "../cart/CartSlice";
+} from "./checkoutslice";
 
 const Checkout = () => {
   const dispatch = useDispatch();
   const cart = useSelector((state) => state.cart);
+<<<<<<< HEAD
   const cartItems = cart.cartitems;
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
@@ -28,10 +33,23 @@ const Checkout = () => {
     navigate("/confirmation");
   };
 
+=======
+  const cartItems = useSelector((state) => state.cart.cartitems);
+  const user = useSelector((state) => state.auth.me);
+  const userId = user.id;
+
+  useEffect(() => {
+    if (user) {
+      dispatch(fetchCartAsync({ userId: user.id }));
+    }
+  }, [dispatch, user]);
+
+>>>>>>> f9b17caa77b35d492cc9f0751b82184587a76133
   const removeFromCart = (productId) => {
     const cartId = cart.id;
-    const userId = cart.userId;
-    dispatch(removeFromCartAsync({ cartId, productId, userId }));
+    if (user) {
+      dispatch(removeFromCartAsync({ cartId, productId, userId }));
+    }
   };
 
   const editQuantity = (productId, plusOrMinus) => {
@@ -39,12 +57,15 @@ const Checkout = () => {
     dispatch(editQuantityAsync({ userId, productId, plusOrMinus }));
   };
 
+<<<<<<< HEAD
   // o: you don't have to prefix with React. here
   React.useEffect(() => {
     const userId = cart.userId;
     dispatch(fetchCartAsync({ userId }));
   }, [dispatch]);
 
+=======
+>>>>>>> f9b17caa77b35d492cc9f0751b82184587a76133
   const fetchCartTotal = (cart) => {
     let total = 0;
     if (cart && cart.cartitems) {
@@ -59,41 +80,7 @@ const Checkout = () => {
     <>
       <div>
         <h2>Checkout</h2>
-        <form onSubmit={handleCheckout}>
-          <label>
-            Name:
-            <input
-              type="text"
-              name="name"
-              value={name}
-              onChange={handleInputChange}
-              required
-            />
-          </label>
-          <br />
-          <label>
-            Email:
-            <input
-              type="email"
-              name="email"
-              value={email}
-              onChange={handleInputChange}
-              required
-            />
-          </label>
-          <br />
-          <label>
-            Address:
-            <input
-              type="text"
-              name="address"
-              value={address}
-              onChange={handleInputChange}
-              required
-            />
-          </label>
-          <br />
-          <br />
+        <form onSubmit={() => {}}>
           <h3>Order Summary</h3>
           <div className="all-products">
             {cartItems && cartItems.length > 0 ? (
@@ -109,6 +96,7 @@ const Checkout = () => {
                     {Number(cartitem.product.price).toFixed(2)}
                   </span>
                   <button
+                    type="button"
                     id="remove-from-cart"
                     onClick={() => removeFromCart(cartitem.productId)}
                   >
@@ -116,6 +104,7 @@ const Checkout = () => {
                   </button>
                   <div className="edit-quantity">
                     <button
+                      type="button"
                       id="reduce-quantity"
                       onClick={() => editQuantity(cartitem.productId, -1)}
                     >
@@ -123,6 +112,7 @@ const Checkout = () => {
                     </button>
                     <h3>Quantity: {cartitem.quantity}</h3>
                     <button
+                      type="button"
                       id="increase-quantity"
                       onClick={() => editQuantity(cartitem.productId, 1)}
                     >
@@ -137,7 +127,16 @@ const Checkout = () => {
           </div>
           <br />
           <h4>Total: ${fetchCartTotal(cart).toFixed(2)}</h4>
+<<<<<<< HEAD
           <button type="submit">Complete Purchase</button>
+=======
+          <Link to="/confirmation">
+            <button 
+                type="button"
+                id="complete-checkout" >Complete Checkout
+             </button>
+          </Link>
+>>>>>>> f9b17caa77b35d492cc9f0751b82184587a76133
         </form>
       </div>
     </>
