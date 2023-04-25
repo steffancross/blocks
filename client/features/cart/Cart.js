@@ -82,7 +82,6 @@ const Cart = () => {
         ) : (
           <div>You have no items in your cart</div>
         )}
-        {/* Replace the button with a Link */}
         {cartitems && cartitems.length > 0 && (
           <Link to="/checkout" onClick={completePurchase}>
             <button id="complete-purchase">Checkout</button>
@@ -106,9 +105,11 @@ const Cart = () => {
       setLocalProducts(productsWithoutDuplicates);
     }, []);
 
-    const removeFromCart = (index) => {
-      const updatedlocalProducts = localProducts.filter(
-        (product, productTag) => index !== productTag
+    const removeFromCart = (id) => {
+      let products = JSON.parse(localStorage.getItem("products"));
+
+      const updatedlocalProducts = products.filter(
+        (product) => id !== product.id
       );
 
       update(updatedlocalProducts);
@@ -126,8 +127,20 @@ const Cart = () => {
       update(editedProducts);
     };
 
+    const increaseQuantity = (id) => {
+      let products = JSON.parse(localStorage.getItem("products"));
+
+      const indexToRemove = products.findIndex((product) => {
+        return product.id === id;
+      });
+      const newItem = products[indexToRemove];
+
+      const editedProducts = [...products, newItem];
+      update(editedProducts);
+    };
+
     const completePurchase = () => {
-      alert("Proceeding to Checkout!");
+      alert("Please sign up or login to complete your checkout!");
     };
 
     return (
@@ -156,7 +169,7 @@ const Cart = () => {
               <button
                 id="remove-from-cart"
                 onClick={() => {
-                  removeFromCart(index);
+                  removeFromCart(product.id);
                 }}
               >
                 Remove item from cart
@@ -166,11 +179,16 @@ const Cart = () => {
         ) : (
           <div>You have no items in your cart</div>
         )}
-        {/* Replace the button with a Link */}
+
         {localProducts && localProducts.length > 0 && (
-          <Link to="/checkout" onClick={completePurchase}>
-            <button id="complete-purchase">Checkout</button>
-          </Link>
+          <button
+            onClick={() => {
+              completePurchase();
+            }}
+            id="complete-purchase"
+          >
+            Checkout
+          </button>
         )}
       </div>
     );
