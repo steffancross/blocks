@@ -68,40 +68,6 @@ const fetchCartTotal = (cart) => {
       <div>
         <h2>Checkout</h2>
         <form onSubmit={handleCheckout}>
-          <label>
-            Name:
-            <input
-              type="text"
-              name="name"
-              value={name}
-              onChange={handleInputChange}
-              required
-            />
-          </label>
-          <br />
-          <label>
-            Email:
-            <input
-              type="email"
-              name="email"
-              value={email}
-              onChange={handleInputChange}
-              required
-            />
-          </label>
-          <br />
-          <label>
-            Address:
-            <input
-              type="text"
-              name="address"
-              value={address}
-              onChange={handleInputChange}
-              required
-            />
-          </label>
-          <br />
-          <br />
           <h3>Order Summary</h3>
           <div className="all-products">
             {cartItems && cartItems.length > 0 ? (
