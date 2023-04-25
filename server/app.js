@@ -52,6 +52,4 @@ app.put("/api/checkout", (req, res) => {
     orderId: 123,
     message: "Order submitted successfully",
   };
-
-  res.send(confirmation);
 });
