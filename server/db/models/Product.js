@@ -26,7 +26,6 @@ const Product = db.define("product", {
   },
   description: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false,
     validate: {
       notEmpty: true,

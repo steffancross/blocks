@@ -38,8 +38,8 @@ router.post("/", async (req, res, next) => {
   try {
     const { userId, productId } = req.body;
 
-    // find cart associated with user
-    const cart = await Cart.findOne({
+    // find cart associated with user or create new cart
+    const [cart, created] = await Cart.findOrCreate({
       where: {
         userId: userId,
         complete: false,
@@ -62,9 +62,8 @@ router.post("/", async (req, res, next) => {
       const product = await Product.findOne({ where: { id: productId } });
 
       // create cart item
-      await CartItems.create({
+      await cart.createCartItem({
         quantity: 1,
-        cartId: cart.id,
         productId: product.id,
       });
     }

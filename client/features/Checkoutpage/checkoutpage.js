@@ -31,7 +31,6 @@ const Checkout = () => {
     });
   };
 
-
   const removeFromCart = (productId) => {
     const cartId = cart.id;
     const userId = cart.userId;
@@ -43,25 +42,24 @@ const Checkout = () => {
     dispatch(editQuantityAsync({ userId, productId, plusOrMinus }));
   };
 
-  React.useEffect(() => {
+  useEffect(() => {
     const userId = cart.userId;
     dispatch(fetchCartAsync({ userId }));
   }, [dispatch]);
 
+  const completeCheckout = (e) => {
+    e.preventDefault();
+  };
 
-const completeCheckout = (e) => {
-  e.preventDefault();
-};
-
-const fetchCartTotal = (cart) => {
-  let total = 0;
-  if (cart && cart.cartitems) {
-    cart.cartitems.forEach((cartItem) => {
-      total += cartItem.product.price * cartItem.quantity;
-    });
-  }
-  return total;
-};
+  const fetchCartTotal = (cart) => {
+    let total = 0;
+    if (cart && cart.cartitems) {
+      cart.cartitems.forEach((cartItem) => {
+        total += cartItem.product.price * cartItem.quantity;
+      });
+    }
+    return total;
+  };
 
   return (
     <>
@@ -156,6 +154,5 @@ const fetchCartTotal = (cart) => {
     </>
   );
 };
-
 
 export default Checkout;
