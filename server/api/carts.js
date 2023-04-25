@@ -24,9 +24,6 @@ router.get("/", async (req, res, next) => {
       },
     });
 
-    // Sort the cartitems by productId in ascending order
-    cart.cartitems.sort((a, b) => a.productId - b.productId);
-
     res.send(cart);
   } catch (err) {
     next(err);
@@ -38,8 +35,10 @@ router.post("/", async (req, res, next) => {
   try {
     const { userId, productId } = req.body;
 
-    // find cart associated with user or create new cart
-    const [cart, created] = await Cart.findOrCreate({
+    // o: you can simplify this route by using a Cart.findOrCreate below
+
+    // find cart associated with user
+    const cart = await Cart.findOne({
       where: {
         userId: userId,
         complete: false,
@@ -62,8 +61,9 @@ router.post("/", async (req, res, next) => {
       const product = await Product.findOne({ where: { id: productId } });
 
       // create cart item
-      await cart.createCartItem({
+      await CartItems.create({
         quantity: 1,
+        cartId: cart.id,
         productId: product.id,
       });
     }
@@ -99,9 +99,6 @@ router.delete("/", async (req, res, next) => {
         },
       },
     });
-
-    // Sort the cartitems by productId in ascending order
-    newCart.cartitems.sort((a, b) => a.productId - b.productId);
 
     res.send(newCart);
   } catch (err) {
@@ -153,9 +150,6 @@ router.put("/", async (req, res, next) => {
         },
       },
     });
-
-    // Sort the cartitems by productId in ascending order
-    newCart.cartitems.sort((a, b) => a.productId - b.productId);
 
     res.send(newCart);
   } catch (err) {

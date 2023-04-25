@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useNavigate, Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import {
   fetchCartAsync,
   removeFromCartAsync,
@@ -25,10 +25,7 @@ const Checkout = () => {
 
   const handleCheckout = (e) => {
     e.preventDefault();
-    const userId = cart.userId;
-    dispatch(fetchCartAsync({ userId })).then(() => {
-      navigate("/confirmation");
-    });
+    navigate("/confirmation");
   };
 
   const removeFromCart = (productId) => {
@@ -42,14 +39,11 @@ const Checkout = () => {
     dispatch(editQuantityAsync({ userId, productId, plusOrMinus }));
   };
 
-  useEffect(() => {
+  // o: you don't have to prefix with React. here
+  React.useEffect(() => {
     const userId = cart.userId;
     dispatch(fetchCartAsync({ userId }));
   }, [dispatch]);
-
-  const completeCheckout = (e) => {
-    e.preventDefault();
-  };
 
   const fetchCartTotal = (cart) => {
     let total = 0;
@@ -143,12 +137,7 @@ const Checkout = () => {
           </div>
           <br />
           <h4>Total: ${fetchCartTotal(cart).toFixed(2)}</h4>
-          <button
-            id="complete-checkout"
-            onClick={() => navigate("/confirmation")}
-          >
-            Complete Checkout
-          </button>
+          <button type="submit">Complete Purchase</button>
         </form>
       </div>
     </>
