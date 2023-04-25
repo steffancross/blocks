@@ -13,11 +13,9 @@ const Navbar = () => {
   };
 
   return (
-    <div className="header">
+    <div>
       <div className="nav"></div>
-      <h1 className="logo">
-        Nobody beats the <span>biz</span>
-      </h1>
+      <h1>FS-App-Template</h1>
       <nav>
         {isLoggedIn ? (
           <div>
@@ -30,12 +28,12 @@ const Navbar = () => {
             </button>
           </div>
         ) : (
-          <div className="navbar">
-            <Link to="/Home">home</Link>
-            <Link to="/login">login</Link>
-            <Link to="/cart">my cart</Link>
-            <Link to="/products">all products</Link>
-            <Link to="/signup">sign up</Link>
+          <div>
+            <Link to="/Home">Home</Link>
+            <Link to="/login">Login</Link>
+            <Link to="/cart">My Cart</Link>
+            <Link to="/products">All Products</Link>
+            <Link to="/signup">Sign Up</Link>
           </div>
         )}
       </nav>
