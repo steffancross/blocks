@@ -1,5 +1,11 @@
 [
   {
+    "fullName": "admin",
+    "password": "password",
+    "email": "admin@email.com",
+    "isAdmin": true
+  },
+  {
     "fullName": "Mari Mingauld",
     "password": "BJqvtq",
     "email": "mmingauld0@economist.com"
