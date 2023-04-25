@@ -26,7 +26,6 @@ const Product = db.define("product", {
   },
   description: {
     type: Sequelize.STRING,
-    unique: true,
     allowNull: false,
     validate: {
       notEmpty: true,
@@ -34,8 +33,7 @@ const Product = db.define("product", {
   },
   image: {
     type: Sequelize.STRING,
-    defaultValue:
-      "https://help.rangeme.com/hc/article_attachments/360006928633/what_makes_a_good_product_image.jpg",
+    defaultValue: "https://picsum.photos/id/0/5000/3333",
   },
 });
 
