@@ -229,7 +229,7 @@ const productData = [
     quantity: 4,
     description: "360-degree sound and up to 16 hours of battery life",
     image:
-      "https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/239ed9b0-7f10-4981-ac78-30f27bad9a43/dcrgla0-7b84e3ee-eee2-470d-8fef-7807b620822c.jpg/v1/fill/w_1024,h_1824,q_75,strp/ffx___brotherhood_sword_1_by_thecoffeefairychan_dcrgla0-fullview.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTgyNCIsInBhdGgiOiJcL2ZcLzIzOWVkOWIwLTdmMTAtNDk4MS1hYzc4LTMwZjI3YmFkOWE0M1wvZGNyZ2xhMC03Yjg0ZTNlZS1lZWUyLTQ3MGQtOGZlZi03ODA3YjYyMDgyMmMuanBnIiwid2lkdGgiOiI8PTEwMjQifV1dLCJhdWQiOlsidXJuOnNlcnZpY2U6aW1hZ2Uub3BlcmF0aW9ucyJdfQ.gb1NnRF0d7en23bmePxBKUL-O9J27YcDdGKlFyt_ETo",
+      "https://img3.wikia.nocookie.net/__cb20131217130213/finalfantasy/images/a/ac/Brotherhood_LRXIII.jpg",
   },
   {
     name: "POTION",
