@@ -15,7 +15,9 @@ const Navbar = () => {
   return (
     <div>
       <div className="nav"></div>
-      <h1>FS-App-Template</h1>
+      <h1 className="logo">
+        Nobody Beats the <span>bizz</span>
+      </h1>
       <nav>
         {isLoggedIn ? (
           <div>
