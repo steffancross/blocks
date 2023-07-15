@@ -343,3 +343,7 @@ button:hover {
   font-family: "Arial Rounded MT Bold", sans-serif;
   font-variant: small-caps;
 }
+
+.single-image {
+  width: 200px;
+}

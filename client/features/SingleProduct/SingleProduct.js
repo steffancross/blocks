@@ -12,6 +12,7 @@ const SingleProduct = () => {
   const { id } = useParams();
 
   const singleProduct = useSelector(selectSingleProduct);
+  const images = singleProduct.image;
   const user = useSelector((state) => state.auth.me);
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
 
@@ -46,6 +47,12 @@ const SingleProduct = () => {
           alt="just an image"
           style={{ width: "300px" }} //temporary in-line styling
         />
+        <div id="image-line">
+          {images &&
+            images.map((image) => {
+              return <img src={image} className="single-image"></img>;
+            })}
+        </div>
         <h3>{singleProduct.name}</h3>
         <h3>{`$${singleProduct.price}`}</h3>
         <h3>{singleProduct.description}</h3>
