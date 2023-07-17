@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import {
@@ -13,12 +13,23 @@ const SingleProduct = () => {
 
   const singleProduct = useSelector(selectSingleProduct);
   const images = singleProduct.image;
+  const [mainImage, setMainImage] = useState("");
   const user = useSelector((state) => state.auth.me);
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
 
   useEffect(() => {
     dispatch(fetchSingleProductAsync(id));
   }, [dispatch]);
+
+  useEffect(() => {
+    if (
+      singleProduct &&
+      singleProduct.image &&
+      singleProduct.image.length > 0
+    ) {
+      setMainImage(singleProduct.image[0]);
+    }
+  }, [singleProduct]);
 
   const addToCart = (singleProduct) => {
     if (isLoggedIn) {
@@ -30,27 +41,35 @@ const SingleProduct = () => {
         })
       );
     } else {
-      //check for existing products in localStorage with getItem, if so, push new product to an array and set it to LS
-      // if not, create empty array, push product and set to LS
-
       let products = JSON.parse(localStorage.getItem("products")) || [];
       products.push(singleProduct);
       localStorage.setItem("products", JSON.stringify(products));
     }
   };
 
+  const changeImage = (image) => {
+    setMainImage(image);
+  };
+
   return (
     <div>
       <div>
         <img
-          src={singleProduct.image}
+          src={mainImage}
           alt="just an image"
           style={{ width: "300px" }} //temporary in-line styling
         />
         <div id="image-line">
           {images &&
-            images.map((image) => {
-              return <img src={image} className="single-image"></img>;
+            images.map((image, index) => {
+              return (
+                <img
+                  key={index}
+                  src={image}
+                  className="single-image"
+                  onClick={() => changeImage(image)}
+                ></img>
+              );
             })}
         </div>
         <h3>{singleProduct.name}</h3>
