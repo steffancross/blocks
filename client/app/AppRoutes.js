@@ -10,10 +10,6 @@ import Cart from "../features/cart/Cart";
 import Checkout from "../features/Checkoutpage/checkoutpage";
 import Confirmation from "../features/Confirmation Page/confirmation";
 
-/**
- * COMPONENT
- */
-
 const AppRoutes = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
@@ -26,8 +22,8 @@ const AppRoutes = () => {
     <div>
       {isLoggedIn ? (
         <Routes>
-          <Route path="/*" element={<Home />} />
-          <Route to="/home" element={<Home />} />
+          <Route path="/*" element={<Products />} />
+          <Route to="/home" element={<Products />} />
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/products/:id" element={<SingleProduct />} />
@@ -36,10 +32,6 @@ const AppRoutes = () => {
         </Routes>
       ) : (
         <Routes>
-          <Route
-            path="/*"
-            element={<AuthForm name="login" displayName="Login" />}
-          />
           <Route
             path="/login"
             element={<AuthForm name="login" displayName="Login" />}
@@ -53,8 +45,9 @@ const AppRoutes = () => {
           <Route path="/products" element={<Products />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
-          <Route to="/home" element={<Home />} />
+          <Route to="/home" element={<Products />} />
           <Route path="/confirmation" element={<Confirmation />} />
+          <Route path="/*" element={<Products />} />
         </Routes>
       )}
     </div>

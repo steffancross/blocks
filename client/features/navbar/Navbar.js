@@ -9,33 +9,29 @@ const Navbar = () => {
   const navigate = useNavigate();
   const logoutAndRedirectHome = () => {
     dispatch(logout());
-    navigate("/login");
+    navigate("/home");
   };
 
   return (
     <div>
       <div className="nav"></div>
-      <h1 className="logo">
-        Nobody Beats the <span>bizz</span>
-      </h1>
+      <h1 className="logo">The Grove</h1>
       <nav>
         {isLoggedIn ? (
           <div>
             <Link to="/home">Home</Link>
-            <Link to="/products">All Products</Link>
-            <Link to="/cart">My Cart</Link>
-            {/* Added link to All Products */}
+            <Link to="/products">Products</Link>
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>
+            <Link to="/cart">Cart</Link>
           </div>
         ) : (
           <div>
             <Link to="/Home">Home</Link>
+            <Link to="/products">Products</Link>
             <Link to="/login">Login</Link>
-            <Link to="/cart">My Cart</Link>
-            <Link to="/products">All Products</Link>
-            <Link to="/signup">Sign Up</Link>
+            <Link to="/cart">Cart</Link>
           </div>
         )}
       </nav>
