@@ -10,6 +10,13 @@ const Product = db.define("product", {
       notEmpty: true,
     },
   },
+  type: {
+    type: Sequelize.STRING,
+    allowNull: false,
+    validate: {
+      notEmpty: true,
+    },
+  },
   price: {
     type: Sequelize.DECIMAL(10, 2), //Can store up to 10 digits with 2 digits as decimal points
     allowNull: false,
