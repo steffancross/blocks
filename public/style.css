@@ -1,5 +1,5 @@
 body {
-  font-family: sans-serif;
+  font-family: Helvetica;
 }
 
 a {
@@ -12,11 +12,6 @@ a:visited {
 
 label {
   display: block;
-}
-
-nav a {
-  display: inline-block;
-  margin: 1em;
 }
 
 form div {
@@ -53,21 +48,6 @@ img {
 
 .individual-product img:hover {
   transform: scale(1.1);
-}
-
-nav a {
-  color: #333333;
-  font-size: 1.2em;
-  font-weight: bold;
-  letter-spacing: 1px;
-  padding: 0.5em 1em;
-  border-radius: 5px;
-  transition: all 0.3s ease;
-}
-
-nav a:hover {
-  background-color: #333333;
-  color: #ffffff;
 }
 
 #complete-purchase {
@@ -239,7 +219,6 @@ button {
   padding: 10px 10px;
   text-align: center;
   text-decoration: none;
-  /* display: inline-block; */
   font-size: 16px;
 }
 
@@ -303,23 +282,8 @@ button {
   }
 }
 
-.logo {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  font-size: 3rem;
-  font-family: Helvetica;
-  padding: 10px;
-  margin: 0;
-}
-
 .header {
   text-align: center;
-}
-
-.navbar {
-  font-family: "Arial Rounded MT Bold", sans-serif;
-  font-variant: small-caps;
 }
 
 .single-image {
@@ -365,4 +329,37 @@ form div {
   background-color: #d8402a;
   color: black;
   padding: 20px 50px 20px 20px;
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+nav div {
+  display: flex;
+  align-items: center;
+}
+
+.logo {
+  font-size: 3rem;
+  margin: 0;
+  margin-right: 25px;
+}
+
+nav a {
+  color: black;
+  margin-right: 25px;
+}
+
+nav a:hover {
+  text-decoration: line-through;
+}
+
+#cart-btn {
+  background-color: black;
+  color: white;
+  padding: 3px 15px 3px 5px;
 }

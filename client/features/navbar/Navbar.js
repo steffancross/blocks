@@ -14,28 +14,33 @@ const Navbar = () => {
 
   return (
     <div>
-      <div className="nav"></div>
-      <h1 className="logo">The Grove</h1>
-      <nav>
-        {isLoggedIn ? (
+      {isLoggedIn ? (
+        <nav>
           <div>
-            <Link to="/home">Home</Link>
+            <h1 className="logo">BLOCKS</h1>
             <Link to="/products">Products</Link>
+          </div>
+          <div>
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>
             <Link to="/cart">Cart</Link>
           </div>
-        ) : (
+        </nav>
+      ) : (
+        <nav>
           <div>
-            <Link to="/Home">Home</Link>
+            <h1 className="logo">BLOCKS</h1>
             <Link to="/products">Products</Link>
-            <Link to="/login">Login</Link>
-            <Link to="/cart">Cart</Link>
           </div>
-        )}
-      </nav>
-      <hr />
+          <div>
+            <Link to="/login">Log In</Link>
+            <Link to="/cart" id="cart-btn">
+              Cart
+            </Link>
+          </div>
+        </nav>
+      )}
     </div>
   );
 };

@@ -32,7 +32,7 @@ const Product = db.define("product", {
     },
   },
   image: {
-    type: Sequelize.ARRAY(Sequelize.STRING),
+    type: Sequelize.ARRAY(Sequelize.STRING(1000)),
     defaultValue: ["https://picsum.photos/id/0/5000/3333"],
   },
 });
