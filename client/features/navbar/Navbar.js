@@ -1,15 +1,13 @@
 import React from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { logout } from "../../app/store";
 
 const Navbar = () => {
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
   const dispatch = useDispatch();
-  const navigate = useNavigate();
   const logoutAndRedirectHome = () => {
     dispatch(logout());
-    navigate("/home");
   };
 
   return (
@@ -21,9 +19,9 @@ const Navbar = () => {
             <Link to="/products">Products</Link>
           </div>
           <div>
-            <button type="button" onClick={logoutAndRedirectHome}>
+            <Link to="/products" onClick={logoutAndRedirectHome}>
               Logout
-            </button>
+            </Link>
             <Link to="/cart" className="cart-btn">
               Cart
             </Link>
