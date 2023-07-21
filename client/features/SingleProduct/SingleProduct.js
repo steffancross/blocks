@@ -15,6 +15,7 @@ const SingleProduct = () => {
   const images = singleProduct.image;
   const user = useSelector((state) => state.auth.me);
   const isLoggedIn = useSelector((state) => !!state.auth.me.id);
+  const [tempAppear, setTempAppear] = useState(false);
 
   useEffect(() => {
     dispatch(fetchSingleProductAsync(id));
@@ -34,6 +35,11 @@ const SingleProduct = () => {
       products.push(singleProduct);
       localStorage.setItem("products", JSON.stringify(products));
     }
+
+    setTempAppear(true);
+    setTimeout(() => {
+      setTempAppear(false);
+    }, 1500);
   };
 
   return (
@@ -50,6 +56,7 @@ const SingleProduct = () => {
         >
           Add to Cart
         </button>
+        {tempAppear && <div id="added-to-cart">Added To Cart</div>}
       </div>
       <div id="image-line">
         {images &&

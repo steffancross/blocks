@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { authenticate } from "../../app/store";
 import { Link } from "react-router-dom";
@@ -12,6 +12,16 @@ import { Link } from "react-router-dom";
 const AuthForm = ({ name, displayName }) => {
   const { error } = useSelector((state) => state.auth);
   const dispatch = useDispatch();
+  const [tempAppear, setTempAppear] = useState(false);
+
+  useEffect(() => {
+    if (error) {
+      setTempAppear(true);
+      setTimeout(() => {
+        setTempAppear(false);
+      }, 1500);
+    }
+  }, [error]);
 
   const handleSubmit = (evt) => {
     evt.preventDefault();
@@ -36,7 +46,7 @@ const AuthForm = ({ name, displayName }) => {
           <div>
             <button type="submit">{displayName}</button>
           </div>
-          {error && <div id="error-login"> {error} </div>}
+          {tempAppear && <div id="error-login"> {error} </div>}
         </form>
         <div id="change-signup">
           <p style={{ marginRight: "5px" }}>Create a </p>

@@ -402,3 +402,12 @@ nav a:hover {
   color: white;
   padding: 3px 15px 3px 5px;
 }
+
+#added-to-cart {
+  position: fixed;
+  bottom: 20px;
+  left: 20px;
+  background-color: #d8402a;
+  color: black;
+  padding: 20px 50px 20px 20px;
+}
