@@ -289,11 +289,7 @@ button {
   text-align: center;
 }
 
-.single-image {
-  width: 200px;
-}
-
-/* Authform */
+/* AUTHFORM */
 #authform {
   display: flex;
   justify-content: center;
@@ -315,6 +311,10 @@ form div {
   margin-left: 0;
 }
 
+form div input {
+  margin-right: 10px;
+}
+
 #change-signup {
   display: flex;
 }
@@ -334,7 +334,7 @@ form div {
   padding: 20px 50px 20px 20px;
 }
 
-/* Navbar */
+/* NAVBAR */
 nav {
   display: flex;
   justify-content: space-between;
@@ -361,7 +361,43 @@ nav a:hover {
   text-decoration: line-through;
 }
 
-#cart-btn {
+.cart-btn {
+  background-color: black;
+  color: white !important;
+  padding: 3px 15px 3px 5px;
+}
+
+/* INDIVIDUAL PRODUCT */
+#product-page {
+  display: grid;
+  grid-template-columns: minmax(200px, 25%) 1fr;
+}
+
+#product-info {
+  display: flex;
+  flex-direction: column;
+  margin-left: 30px;
+}
+
+#image-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 25px;
+  height: 100%;
+  overflow-y: scroll;
+}
+
+.single-image {
+  width: 90%;
+}
+
+.single-image:not(:first-child) {
+  margin-top: 15px;
+}
+
+#addtolocal {
+  width: 120px;
   background-color: black;
   color: white;
   padding: 3px 15px 3px 5px;

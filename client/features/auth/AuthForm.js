@@ -18,7 +18,8 @@ const AuthForm = ({ name, displayName }) => {
     const formName = evt.target.name;
     const email = evt.target.email.value;
     const password = evt.target.password.value;
-    dispatch(authenticate({ email, password, method: formName }));
+    const fullName = formName === "signup" ? evt.target.fullName.value : "";
+    dispatch(authenticate({ email, password, fullName, method: formName }));
   };
 
   return (
@@ -26,13 +27,11 @@ const AuthForm = ({ name, displayName }) => {
       <div id="authform-content">
         <form onSubmit={handleSubmit} name={name}>
           <div>
-            <input
-              name="email"
-              type="text"
-              placeholder="Email*"
-              style={{ marginRight: "10px" }}
-            />
+            <input name="email" type="text" placeholder="Email*" />
             <input name="password" type="password" placeholder="Password*" />
+            {name === "signup" ? (
+              <input name="fullName" type="text" placeholder="Name*" />
+            ) : null}
           </div>
           <div>
             <button type="submit">{displayName}</button>

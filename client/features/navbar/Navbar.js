@@ -24,7 +24,9 @@ const Navbar = () => {
             <button type="button" onClick={logoutAndRedirectHome}>
               Logout
             </button>
-            <Link to="/cart">Cart</Link>
+            <Link to="/cart" className="cart-btn">
+              Cart
+            </Link>
           </div>
         </nav>
       ) : (
@@ -35,7 +37,7 @@ const Navbar = () => {
           </div>
           <div>
             <Link to="/login">Log In</Link>
-            <Link to="/cart" id="cart-btn">
+            <Link to="/cart" className="cart-btn">
               Cart
             </Link>
           </div>
