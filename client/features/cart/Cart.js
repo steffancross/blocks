@@ -48,13 +48,15 @@ const Cart = () => {
 
     return (
       <div id="cart-main">
-        <div id="cart-categories">
-          <p>Img</p>
-          <p>Name</p>
-          <p>Quantity</p>
-          <p></p>
-          <p>Price</p>
-        </div>
+        {cartitems && cartitems.length > 0 && (
+          <div id="cart-categories">
+            <p>Img</p>
+            <p>Name</p>
+            <p>Quantity</p>
+            <p></p>
+            <p>Price</p>
+          </div>
+        )}
         {cartitems && cartitems.length > 0 ? (
           cartitems.map((cartitem, index) => (
             <div className="product" key={cartitem.productId}>
@@ -152,13 +154,15 @@ const Cart = () => {
 
     return (
       <div id="cart-main">
-        <div id="cart-categories">
-          <p>Img</p>
-          <p>Name</p>
-          <p>Quantity</p>
-          <p></p>
-          <p>Price</p>
-        </div>
+        {localProducts && localProducts.length > 0 && (
+          <div id="cart-categories">
+            <p>Img</p>
+            <p>Name</p>
+            <p>Quantity</p>
+            <p></p>
+            <p>Price</p>
+          </div>
+        )}
         {localProducts && localProducts.length > 0 ? (
           localProducts.map((product, index) => (
             <div className="product" key={index}>
