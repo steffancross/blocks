@@ -48,6 +48,13 @@ const Cart = () => {
 
     return (
       <div id="cart-main">
+        <div id="cart-categories">
+          <p>Img</p>
+          <p>Name</p>
+          <p>Quantity</p>
+          <p></p>
+          <p>Price</p>
+        </div>
         {cartitems && cartitems.length > 0 ? (
           cartitems.map((cartitem, index) => (
             <div className="product" key={cartitem.productId}>
@@ -60,7 +67,7 @@ const Cart = () => {
                 >
                   -
                 </button>
-                <h3>Quantity: {cartitem.quantity}</h3>
+                <h3>{cartitem.quantity}</h3>
                 <button
                   id="increase-quantity"
                   onClick={() => editQuantity(cartitem.productId, 1)}
@@ -74,7 +81,7 @@ const Cart = () => {
                   removeFromCart(cartitem.productId);
                 }}
               >
-                Remove
+                REMOVE
               </button>
               <h3>{`$${cartitem.product.price}`}</h3>
             </div>
@@ -145,6 +152,13 @@ const Cart = () => {
 
     return (
       <div id="cart-main">
+        <div id="cart-categories">
+          <p>Img</p>
+          <p>Name</p>
+          <p>Quantity</p>
+          <p></p>
+          <p>Price</p>
+        </div>
         {localProducts && localProducts.length > 0 ? (
           localProducts.map((product, index) => (
             <div className="product" key={index}>
@@ -157,7 +171,7 @@ const Cart = () => {
                 >
                   -
                 </button>
-                <h3>Quantity: {product.cartquantity}</h3>
+                <h3>{product.cartquantity}</h3>
                 <button
                   id="increase-quantity"
                   onClick={() => increaseQuantity(product.id)}
@@ -171,7 +185,7 @@ const Cart = () => {
                   removeFromCart(product.id);
                 }}
               >
-                Remove
+                REMOVE
               </button>
               <h3>{`$${product.price}`}</h3>
             </div>
