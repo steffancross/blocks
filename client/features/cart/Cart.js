@@ -51,9 +51,8 @@ const Cart = () => {
         {cartitems && cartitems.length > 0 ? (
           cartitems.map((cartitem, index) => (
             <div className="product" key={cartitem.productId}>
-              <h3>Product: {cartitem.product.name}</h3>
               <img src={cartitem.product.image} alt={cartitem.product.name} />
-              <h3>{`$${cartitem.product.price}`}</h3>
+              <h3>{cartitem.product.name}</h3>
               <div className="edit-quantity">
                 <button
                   id="reduce-quantity"
@@ -75,8 +74,9 @@ const Cart = () => {
                   removeFromCart(cartitem.productId);
                 }}
               >
-                Remove item from cart
+                Remove
               </button>
+              <h3>{`$${cartitem.product.price}`}</h3>
             </div>
           ))
         ) : (
@@ -148,9 +148,8 @@ const Cart = () => {
         {localProducts && localProducts.length > 0 ? (
           localProducts.map((product, index) => (
             <div className="product" key={index}>
-              <h3>Product: {product.name}</h3>
               <img src={product.image} alt={product.name} />
-              <h3>{`$${product.price}`}</h3>
+              <h3>{product.name}</h3>
               <div className="edit-quantity">
                 <button
                   id="reduce-quantity"
@@ -172,8 +171,9 @@ const Cart = () => {
                   removeFromCart(product.id);
                 }}
               >
-                Remove item from cart
+                Remove
               </button>
+              <h3>{`$${product.price}`}</h3>
             </div>
           ))
         ) : (

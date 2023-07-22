@@ -19,7 +19,7 @@ const AuthForm = ({ name, displayName }) => {
       setTempAppear(true);
       setTimeout(() => {
         setTempAppear(false);
-      }, 1500);
+      }, 1200);
     }
   }, [error]);
 

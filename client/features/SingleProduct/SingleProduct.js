@@ -39,7 +39,7 @@ const SingleProduct = () => {
     setTempAppear(true);
     setTimeout(() => {
       setTempAppear(false);
-    }, 1500);
+    }, 1200);
   };
 
   return (
