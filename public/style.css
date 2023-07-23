@@ -1,6 +1,13 @@
+:root {
+  --primary: #000;
+  --background: #c6c6c6;
+  --accent: #62e94f;
+}
+
 body {
   font-family: Helvetica;
   text-transform: uppercase;
+  background-color: var(--background);
 }
 
 a {
@@ -45,7 +52,7 @@ img {
 
 .individual-product img:hover {
   filter: blur(0px);
-  box-shadow: 0 0 25px black;
+  box-shadow: 0 0 25px var(--accent);
   transition: box-shadow 0.2s;
 }
 
@@ -115,7 +122,7 @@ img {
   margin: 0;
   font-size: 1.2rem;
   font-weight: 600;
-  color: #333;
+  color: black;
 }
 
 /* CART QUANTITY */
@@ -324,4 +331,28 @@ nav a:hover {
   padding: 20px 50px 20px 20px;
 }
 
-/* CART */
+/* CHECKOUT */
+#checkout-main {
+  margin-left: 80px;
+}
+
+#checkout-all {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 0;
+}
+
+#checkout-single {
+  display: flex;
+  border-top: 1px solid black;
+  max-width: 900px;
+  margin-top: 0;
+}
+
+#checkout-single * {
+  margin-right: 20px;
+}
+
+h4 {
+  margin-top: 0;
+}

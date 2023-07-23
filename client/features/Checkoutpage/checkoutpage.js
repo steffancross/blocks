@@ -44,47 +44,19 @@ const Checkout = () => {
 
   return (
     <>
-      <div>
+      <div id="checkout-main">
         <h2>Checkout</h2>
         <form onSubmit={() => {}}>
           <h3>Order Summary</h3>
-          <div className="all-products">
+          <div id="checkout-all">
             {cartItems && cartItems.length > 0 ? (
-              cartItems.map((cartitem) => (
-                <div className="individual-product" key={cartitem.productId}>
-                  <span>{cartitem.product.name}</span>
-                  <img
-                    src={cartitem.product.image}
-                    alt={cartitem.product.name}
-                  />
-                  <span>
+              cartItems.map((cartitem, index) => (
+                <div id="checkout-single" key={index}>
+                  <p>{cartitem.product.name}</p>
+                  <p>
                     {cartitem.quantity} x $
                     {Number(cartitem.product.price).toFixed(2)}
-                  </span>
-                  <button
-                    type="button"
-                    id="remove-from-cart"
-                    onClick={() => removeFromCart(cartitem.productId)}
-                  >
-                    Remove item from cart
-                  </button>
-                  <div className="edit-quantity">
-                    <button
-                      type="button"
-                      id="reduce-quantity"
-                      onClick={() => editQuantity(cartitem.productId, -1)}
-                    >
-                      -
-                    </button>
-                    <h3>Quantity: {cartitem.quantity}</h3>
-                    <button
-                      type="button"
-                      id="increase-quantity"
-                      onClick={() => editQuantity(cartitem.productId, 1)}
-                    >
-                      +
-                    </button>
-                  </div>
+                  </p>
                 </div>
               ))
             ) : (
@@ -94,10 +66,9 @@ const Checkout = () => {
           <br />
           <h4>Total: ${fetchCartTotal(cart).toFixed(2)}</h4>
           <Link to="/confirmation">
-            <button 
-                type="button"
-                id="complete-checkout" >Complete Checkout
-             </button>
+            <button type="button" id="complete-checkout">
+              Complete Checkout
+            </button>
           </Link>
         </form>
       </div>
