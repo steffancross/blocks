@@ -39,21 +39,23 @@ const AuthForm = ({ name, displayName }) => {
           <div>
             <input name="email" type="text" placeholder="Email*" />
             <input name="password" type="password" placeholder="Password*" />
-            {name === "signup" ? (
+            {name === "signup" && (
               <input name="fullName" type="text" placeholder="Name*" />
-            ) : null}
+            )}
           </div>
           <div>
             <button type="submit">{displayName}</button>
           </div>
           {tempAppear && <div id="error-login"> {error} </div>}
         </form>
-        <div id="change-signup">
-          <p style={{ marginRight: "5px" }}>Create a </p>
-          <Link to="/signup" style={{ textDecoration: "underline" }}>
-            new account here.
-          </Link>
-        </div>
+        {name !== "signup" && (
+          <div id="change-signup">
+            <p style={{ marginRight: "5px" }}>Create a </p>
+            <Link to="/signup" style={{ textDecoration: "underline" }}>
+              new account here.
+            </Link>
+          </div>
+        )}
       </div>
     </div>
   );

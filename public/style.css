@@ -60,11 +60,11 @@ img {
   text-decoration: line-through;
 }
 
-/*  */
+/* CART */
 #complete-purchase {
-  padding: 1em;
   margin-top: 1em;
-  font-weight: bold;
+  color: var(--background) !important;
+  padding: 3px 15px 3px 5px;
 }
 
 .edit-quantity {
@@ -94,7 +94,7 @@ img {
 }
 
 #cart-categories :nth-child(2) {
-  margin-right: 10px;
+  margin-right: 5px;
 }
 
 #cart-categories :last-child {
@@ -111,6 +111,10 @@ img {
   padding-top: 15px;
 }
 
+s {
+  border-top: 1px solid var(--primary);
+  max-width: 900px;
+}
 /* Product image */
 .product img {
   width: 120px;
@@ -136,10 +140,12 @@ img {
   font-size: 1rem;
   font-weight: 500;
   color: black;
+  margin-left: 5px;
+  margin-right: 5px;
 }
 
 .edit-quantity button {
-  background-color: white;
+  background-color: var(--background);
   color: black;
   border: none;
   padding: 0.5rem;
@@ -148,14 +154,14 @@ img {
 }
 
 .edit-quantity button:hover {
-  background-color: black;
-  color: white;
+  background-color: var(--accent);
+  color: var(--primary);
 }
 
 /* Remove from cart button */
 #remove-from-cart {
   color: black;
-  background-color: white;
+  background-color: var(--background);
   border: none;
   padding: 0.5rem;
   font-size: 1rem;
@@ -164,6 +170,7 @@ img {
 
 #remove-from-cart:hover {
   text-decoration: line-through;
+  text-decoration-color: var(--accent);
 }
 
 /* Checkout button */
@@ -195,7 +202,7 @@ img {
 button[type="submit"] {
   background-color: black;
   border-radius: 0;
-  color: #fff;
+  color: var(--background);
 }
 
 button {
@@ -232,6 +239,8 @@ form div {
 
 form div input {
   margin-right: 10px;
+  background-color: var(--background);
+  border: 1px solid var(--primary);
 }
 
 #change-signup {
@@ -278,11 +287,16 @@ nav a {
 
 nav a:hover {
   text-decoration: line-through;
+  text-decoration-color: var(--accent);
+}
+
+nav a:hover:last-child {
+  text-decoration: none;
 }
 
 .cart-btn {
   background-color: black;
-  color: white !important;
+  color: var(--background) !important;
   padding: 3px 15px 3px 5px;
 }
 
@@ -318,16 +332,17 @@ nav a:hover {
 #addtolocal {
   width: 120px;
   background-color: black;
-  color: white;
+  color: var(--background);
   padding: 3px 15px 3px 5px;
+  cursor: pointer;
 }
 
 #added-to-cart {
   position: fixed;
   bottom: 20px;
   left: 20px;
-  background-color: #d8402a;
-  color: black;
+  background-color: var(--accent);
+  color: var(--primary);
   padding: 20px 50px 20px 20px;
 }
 
@@ -351,6 +366,15 @@ nav a:hover {
 
 #checkout-single * {
   margin-right: 20px;
+}
+
+#complete-checkout {
+  color: var(--background);
+  padding: 3px 15px 3px 5px;
+}
+
+#complete-checkout:hover {
+  cursor: pointer;
 }
 
 h4 {

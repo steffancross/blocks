@@ -91,6 +91,7 @@ const Cart = () => {
         ) : (
           <div>You have no items in your cart</div>
         )}
+        {cartitems && cartitems.length > 0 && <s></s>}
         {cartitems && cartitems.length > 0 && (
           <Link to="/checkout" onClick={completePurchase}>
             <button id="complete-purchase">Checkout</button>
@@ -197,7 +198,7 @@ const Cart = () => {
         ) : (
           <div>You have no items in your cart</div>
         )}
-
+        {localProducts && localProducts.length > 0 && <s></s>}
         {localProducts && localProducts.length > 0 && (
           <button
             onClick={() => {
