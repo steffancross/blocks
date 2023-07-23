@@ -58,6 +58,7 @@ img {
 
 .individual-product:hover {
   text-decoration: line-through;
+  text-decoration-color: var(--accent);
 }
 
 /* CART */
@@ -71,7 +72,6 @@ img {
   display: flex;
 }
 
-/* CART */
 #cart-main {
   display: flex;
   flex-direction: column;
@@ -100,6 +100,7 @@ img {
 #cart-categories :last-child {
   padding-right: 32px;
 }
+
 /* Individual product item */
 .product {
   max-width: 900px;
@@ -330,7 +331,7 @@ nav a:hover:last-child {
 }
 
 #addtolocal {
-  width: 120px;
+  width: 110px;
   background-color: black;
   color: var(--background);
   padding: 3px 15px 3px 5px;
@@ -379,4 +380,8 @@ nav a:hover:last-child {
 
 h4 {
   margin-top: 0;
+}
+
+h3 {
+  font-weight: 400 !important;
 }

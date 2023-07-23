@@ -46,8 +46,8 @@ const SingleProduct = () => {
     <div id="product-page">
       <div id="product-info">
         <h3>{singleProduct.name}</h3>
-        <h3>{`$${singleProduct.price}`}</h3>
-        <h3>{singleProduct.description}</h3>
+        <p>{`$${singleProduct.price}`}</p>
+        <p>{singleProduct.description}</p>
         <button
           id="addtolocal"
           onClick={() => {

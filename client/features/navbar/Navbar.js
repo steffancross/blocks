@@ -17,6 +17,7 @@ const Navbar = () => {
           <div>
             <h1 className="logo">BLOCKS</h1>
             <Link to="/products">Products</Link>
+            <Link></Link>
           </div>
           <div>
             <Link to="/products" onClick={logoutAndRedirectHome}>
@@ -32,6 +33,7 @@ const Navbar = () => {
           <div>
             <h1 className="logo">BLOCKS</h1>
             <Link to="/products">Products</Link>
+            <Link></Link>
           </div>
           <div>
             <Link to="/login">Log In</Link>
