@@ -21,17 +21,18 @@ if (process.env.DATABASE_URL) {
   };
 }
 
-const db = new Sequelize(
-  process.env.DATABASE_URL ||
-    `postgres://localhost:5432/graceshopper-project-test`,
-  config
-);
-module.exports = db;
-
-// deploy db
+// local db
 // const db = new Sequelize(
 //   process.env.DATABASE_URL ||
 //     `postgres://localhost:5432/graceshopper-project-test`,
 //   config
 // );
 // module.exports = db;
+
+// deploy db
+const db = new Sequelize(
+  process.env.DATABASE_URL ||
+    `psql -h db.wudmkwyvuzfqgpslkmrt.supabase.co -p 5432 -d postgres -U postgres`,
+  config
+);
+module.exports = db;
