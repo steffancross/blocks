@@ -32,7 +32,7 @@ if (process.env.DATABASE_URL) {
 // deploy db
 const db = new Sequelize(
   process.env.DATABASE_URL ||
-    `psql -h db.wudmkwyvuzfqgpslkmrt.supabase.co -p 5432 -d postgres -U postgres`,
+    `postgres://infinite_dungeon_crawler_user:SLP4gzFOxE4De582FnKDeqqWoyQtngqk@dpg-cj82dkljeehc73fhgn30-a/infinite_dungeon_crawler`,
   config
 );
 module.exports = db;
