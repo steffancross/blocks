@@ -1,5 +1,6 @@
 const Sequelize = require("sequelize");
 const pkg = require("../../package.json");
+require("dotenv").config();
 
 const databaseName =
   pkg.name + (process.env.NODE_ENV === "test" ? "-test" : "");
@@ -30,9 +31,5 @@ if (process.env.DATABASE_URL) {
 // module.exports = db;
 
 // deploy db
-const db = new Sequelize(
-  process.env.DATABASE_URL ||
-    `postgres://blocks_bujz_user:klJS9hOBfe8Yr3D1ywtSsrtD7QqUJQeN@dpg-cja1d721s96s739fc8cg-a/blocks_bujz`,
-  config
-);
+const db = new Sequelize(process.env.DATABASE_URL, config);
 module.exports = db;
