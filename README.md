@@ -1,48 +1,26 @@
-# FS-App-Template
+# Blocks
 
+Blocks is a CRUD e-commerce site that allows users to browse, add and remove items from their cart, and checkout.
 
-steffans change
+## Installation
 
+Clone this repository to your local machine and install all dependencies.
 
-## Setup
+## Usage
 
-To use this as boilerplate, you'll need to take the following steps:
+To use this application you will need either a local postgres database or one you can connect to.
 
-- Don't fork or clone this repo! Instead, create a new, empty
-  directory on your machine and `git init` (or create an empty repo on
-  Github and clone it to your local machine)
+If you have a local database, go to server/db/db and change the name there to match your database name.
 
-- Now you will have to add the fs-app-template as a remote and merge it into your own repository.
-
-```
-git remote add boilermaker git@github.com:FullstackAcademy/fs-app-template-v2.git
-git fetch boilermaker
-git merge boilermaker/main
-git branch -m master main
-```
-
-## Customize
-
-Now that you've got the code, follow these steps to get acclimated:
-
-- Update project name and description in `package.json`
-- `npm install`
-- Create two postgres databases (`MY_APP_NAME` should match the `name`
-  parameter in `package.json`):
-- These commands will create both your **development** and **test** databases
+Otherwise, you need to create a .env file and have "DATABASE_URL" as your key.
 
 ```
-createdb <YOUR APP NAME HERE FROM package.json>
-createdb <YOUR APP NAME HERE FROM package.json>-test
+# npm run seed
+seeds your database
+
+# npm run start
+starts your server (for testing your routes)
+
+# npm run start:dev
+starts your server and builds client-side files
 ```
-
-- By default, running `npm test` will use your test database, while
-  regular development uses development database
-
-## Start
-
-Sync and seed your database by running `npm run seed`. Running `npm run start:dev` will make great things happen!
-
-- start:dev will both start your server and build your client side files using webpack
-- start:dev:logger is the same as start:dev, but you will see your SQL queries (can be helpful for debugging)
-- start:dev:seed will start your server and also seed your database (this is useful when you are making schema changes and you don't want to run your seed script separately)
